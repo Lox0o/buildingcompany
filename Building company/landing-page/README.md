@@ -1,83 +1,118 @@
-# Tradie recruitment landing page
+# SJ Builders — Premium Recruitment Landing Page
 
-Single-page recruitment site built from the PRD. Mobile-first, fast, ready to deploy.
+Single-page recruitment site with premium design aesthetic. Mobile-first, fast, ready to deploy.
 
-## What’s in the folder
+## What's in the folder
 
-- **index.html** — All sections: Hero, Portfolio, About Ed, About business, What we offer, How it works, Form, FAQ, Footer.
-- **styles.css** — Layout and styling (no build step).
-- **script.js** — Portfolio grid, filter, lightbox, FAQ accordion, offer tabs.
-- **data.js** — Editable content: portfolio projects, FAQ, testimonials (turn on when you have 2+).
-- **images/** — Image folders: `hero/`, `portfolio/`, `about/`, `testimonials/`. See `images/README.md` for details.
-- **sitemap.xml** / **robots.txt** — Update the domain to your live URL before or after deploy.
+- **index.html** — 5 sections: Hero, What We Offer, How It Works, Registration Form, Footer
+- **styles.css** — Premium design system (Gurner-inspired)
+- **script.js** — Content population, scroll animations, interactions
+- **config.js** — **All configurable values in one place** — update this file to change content
+- **images/** — Image folders for hero, portfolio, about, testimonials, og
 
-## 1. Add your Tally form
+## Quick Start
 
-1. In Tally, open your form → **Share** → **Embed**.
-2. Copy the **iframe** code.
-3. Open **index.html** and find the `<iframe data-tally-embed ...>` in the **Register your interest** section.
-4. Replace `https://tally.so/embed/YOUR_FORM_ID` with your real Tally embed URL (e.g. `https://tally.so/embed/abc123`).
-5. Remove or hide the grey note paragraph below the iframe once the form works.
+### 1. Update Config (`config.js`)
 
-## 2. Edit placeholder content
+Edit `config.js` to set:
+- Company name, tagline, service area
+- Pay rates (qualified and apprentice)
+- Contact details (phone, email, ABN)
+- Hero headline and subheadline
+- Profit share description
 
-- **index.html**  
-  - Hero: headline, subhead, location, urgency text.  
-  - About Ed: edit bio, quote, and **licence number** in credentials. The image path is already set to `images/about/ed-on-site.jpg` — just add your photo there.  
-  - What we offer: add your real rate range and suburbs.  
-  - Footer: company name, ABN, licence number, phone, email, service area, privacy line. Optionally add social links in the footer-social div.  
-  - **SEO**: Replace `https://yoursite.com.au` in the canonical link, Open Graph and Twitter meta tags, and in the JSON-LD script at the bottom. Replace `og-image.jpg` with a real image URL (e.g. hero or logo).  
-  - **sitemap.xml** and **robots.txt**: Replace `https://yoursite.com.au` with your live domain.
+**Everything else updates automatically from config.**
 
-- **images/**  
-  - **hero/**: Add `hero-bg.jpg` (1920x1080px or larger) for the hero background.  
-  - **about/**: Add `ed-on-site.jpg` (portrait or job-site photo).  
-  - **portfolio/**: Add your project photos and update URLs in `data.js` to point to `images/portfolio/`.  
-  - **testimonials/**: Add worker photos when you have testimonials.
+### 2. Add Images
 
-- **data.js**  
-  - **portfolio**: Replace placeholder image URLs with paths to your photos in `images/portfolio/`. Add/remove projects; keep `type` (bathroom, kitchen, deck, structural, fitout) for the filter.  
-  - **faq**: Replace the `[your rate range]` and `[Your suburbs/regions]` with your actual details.  
-  - **testimonials**: When you have 2+ worker testimonials, set `testimonialsEnabled: true` and fill the `testimonials` array. The section will show automatically.
+- **Hero**: Add `hero-bg.jpg` to `images/hero/` (1920x1080px+)
+- **OG Image**: Add `og-image.jpg` to `images/og/` (1200x630px for social sharing)
+- See `images/README.md` for full details
 
-## 3. Preview locally
+### 3. Update SEO & Domain
 
-Open **index.html** in a browser (double-click or “Open with Live Server” in VS Code).  
-Or run a simple server from this folder:
+In `index.html`, replace:
+- `https://sjbuilders.com.au/` with your actual domain
+- Update OG image URL if different
+- Update JSON-LD schema with real contact details
 
-```bash
-cd landing-page
-npx serve .
-```
+### 4. Form Setup
 
-Then open the URL it prints (e.g. http://localhost:3000).
+The page uses an Airtable form embed. To update:
+1. Get your Airtable form embed URL
+2. Replace the `src` in the `<iframe>` in the Registration section
+3. Or build a custom multi-step form (see spec for requirements)
 
-## 4. Deploy
+## Design System
 
-**Option A — Netlify (easiest)**  
-1. Go to [netlify.com](https://www.netlify.com) and sign up.  
-2. Drag the **landing-page** folder onto the Netlify “Drop” zone.  
-3. You get a live URL. In **Domain settings** you can add your own domain (e.g. join.yourcompany.com.au).
+**Colors:**
+- Primary black: `#0a0a0a`
+- Primary white: `#ffffff`
+- Accent gold: `#c9a84c`
+- Muted grays for secondary text
 
-**Option B — Vercel**  
-1. Push this folder to a GitHub repo.  
-2. Go to [vercel.com](https://vercel.com), import the repo.  
-3. Set the project root to the folder that contains `index.html` (e.g. `landing-page`).  
-4. Deploy. Add your domain in Project → Settings → Domains.
+**Typography:**
+- Display/Headings: DM Serif Display (serif, medium weight)
+- Body/Labels: DM Sans (sans-serif)
 
-**Option C — Cloudflare Pages**  
-1. Push to GitHub.  
-2. In Cloudflare Pages: Create project → Connect Git → select repo.  
-3. Build settings: Framework preset **None**, build output **the folder that contains index.html**.  
-4. Deploy and add your domain.
+**Layout:**
+- 12-column grid system
+- Generous whitespace (8–10rem section padding on desktop)
+- Content constrained to max-width for readability
+- Centered layouts throughout
 
-## 5. After go-live
+## Sections
 
-- **SMS confirmation**: In Zapier or Make, create a zap: trigger = **New record in Airtable** (your Submissions table) → action = **Send SMS** (Twilio, MessageMedia, or BurstSMS). Use the **Mobile** field and a message like: “Hi [Name], we got your details. We’ll be in touch within 48 hours.”
-- **Domain**: Point your chosen domain (e.g. join.yourcompany.com.au) at the deployed site using the host’s instructions (Netlify/Vercel/Cloudflare).
+1. **Hero** — Full viewport, dark background, centered content
+2. **What We Offer** — 6 benefit cards (profit share featured)
+3. **How It Works** — 3-step process
+4. **Registration** — Airtable form embed (or custom form)
+5. **Footer** — Sticky reveal pattern, dark background
 
-## Customisation
+## Features
 
-- **Colours**: In **styles.css**, change the `:root` variables (e.g. `--color-accent`, `--color-bg`).  
-- **Hero background**: Replace the `hero-bg` image URL in **index.html** or in CSS (`.hero-bg`) with a real job-site photo.  
-- **Font**: The site uses DM Sans from Google Fonts. You can switch the font link and `--font-sans` in **styles.css** if you prefer another font.
+- ✅ Scroll-triggered fade-up animations
+- ✅ Smooth scroll navigation
+- ✅ Responsive design (mobile-first)
+- ✅ Config-driven content
+- ✅ Premium aesthetic (Gurner-inspired)
+- ✅ Fast loading (no heavy dependencies)
+
+## Deploy
+
+**Option A — Netlify**
+1. Drag the `landing-page` folder onto Netlify
+2. Add your domain in Domain settings
+
+**Option B — Vercel**
+1. Push to GitHub
+2. Import repo in Vercel
+3. Set project root to `landing-page` folder
+
+**Option C — Cloudflare Pages**
+1. Push to GitHub
+2. Create project → Connect Git
+3. Build settings: Framework preset **None**, output directory: `landing-page`
+
+## Customization
+
+- **Colors**: Edit CSS variables in `styles.css` (`:root`)
+- **Typography**: Change font imports in `index.html` `<head>`
+- **Content**: Edit `config.js` — everything updates automatically
+- **Layout**: Adjust spacing variables in `styles.css`
+
+## Performance
+
+- Lighthouse mobile score: 90+ target
+- No build step required
+- Optimize images before uploading
+- Use WebP format when possible
+
+## Next Steps
+
+1. Fill in `config.js` with your real details
+2. Add hero background image
+3. Add OG image for social sharing
+4. Update domain URLs in `index.html`
+5. Test on mobile devices
+6. Deploy!

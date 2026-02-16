@@ -1,259 +1,150 @@
 (function () {
   "use strict";
 
-  var data = window.LANDING_PAGE_DATA;
-  if (!data) return;
-
-  // ----- Portfolio: render grid from data -----
-  var grid = document.getElementById("portfolio-grid");
-  if (grid && data.portfolio && data.portfolio.length) {
-    data.portfolio.forEach(function (project) {
-      var card = document.createElement("article");
-      card.className = "portfolio-card";
-      card.dataset.type = project.type;
-      card.setAttribute("role", "button");
-      card.tabIndex = 0;
-
-      var img = document.createElement("img");
-      img.src = project.images[0];
-      img.alt = project.title;
-      img.loading = "lazy";
-      img.dataset.projectId = project.id;
-
-      var info = document.createElement("div");
-      info.className = "portfolio-card-info";
-      var title = document.createElement("h3");
-      title.className = "portfolio-card-title";
-      title.textContent = project.title;
-      var meta = document.createElement("p");
-      meta.className = "portfolio-card-meta";
-      meta.textContent = project.duration ? project.duration : project.type;
-      info.appendChild(title);
-      info.appendChild(meta);
-
-      var desc = document.createElement("p");
-      desc.className = "portfolio-card-desc";
-      desc.textContent = project.description;
-
-      card.appendChild(img);
-      card.appendChild(desc);
-      card.appendChild(info);
-      grid.appendChild(card);
-
-      card.addEventListener("click", function () {
-        openLightbox(project);
-      });
-      card.addEventListener("keydown", function (e) {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          openLightbox(project);
-        }
-      });
-    });
-  }
-
-  // ----- Portfolio filter -----
-  var filterBtns = document.querySelectorAll(".filter-btn");
-  var cards = document.querySelectorAll(".portfolio-card");
-  filterBtns.forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var filter = btn.dataset.filter;
-      filterBtns.forEach(function (b) {
-        b.classList.toggle("active", b === btn);
-      });
-      cards.forEach(function (card) {
-        var type = card.dataset.type;
-        var show = filter === "all" || type === filter;
-        card.style.display = show ? "" : "none";
-      });
-    });
-  });
-
-  // ----- Lightbox -----
-  var lightbox = document.getElementById("lightbox");
-  var lightboxImg = document.getElementById("lightbox-img");
-  var lightboxTitle = document.getElementById("lightbox-title");
-  var lightboxDesc = document.getElementById("lightbox-desc");
-  var lightboxMeta = document.getElementById("lightbox-meta");
-  var lightboxThumbs = document.getElementById("lightbox-thumbs");
-  var lightboxClose = document.querySelector(".lightbox-close");
-
-  var currentLightboxProject = null;
-  var currentLightboxIndex = 0;
-
-  function setLightboxImage(project, index) {
-    if (!project || !lightboxImg) return;
-    index = Math.max(0, Math.min(index, project.images.length - 1));
-    currentLightboxIndex = index;
-    lightboxImg.src = project.images[index];
-    if (lightboxThumbs) {
-      var thumbs = lightboxThumbs.querySelectorAll("img");
-      thumbs.forEach(function (t, i) {
-        t.classList.toggle("active", i === index);
-      });
+  const config = window.SJ_BUILDERS_CONFIG || {};
+  
+  // Populate page content from config
+  function populateContent() {
+    // Hero
+    if (config.companyName && document.getElementById('hero-brand')) {
+      document.getElementById('hero-brand').textContent = config.companyName;
+    }
+    if (config.heroHeadline && document.getElementById('hero-headline')) {
+      document.getElementById('hero-headline').textContent = config.heroHeadline;
+    }
+    if (config.heroSubheadline && document.getElementById('hero-subhead')) {
+      document.getElementById('hero-subhead').textContent = config.heroSubheadline;
+    }
+    if (config.serviceArea && document.getElementById('hero-location')) {
+      document.getElementById('hero-location').textContent = `Based in ${config.serviceArea}`;
+    }
+    if (config.urgencyText && document.getElementById('hero-urgency')) {
+      document.getElementById('hero-urgency').textContent = config.urgencyText;
+    }
+    
+    // Footer
+    if (config.companyName && document.getElementById('footer-company')) {
+      document.getElementById('footer-company').textContent = config.companyName;
+    }
+    if (config.abn && document.getElementById('footer-abn')) {
+      document.getElementById('footer-abn').textContent = `ABN: ${config.abn}`;
+    }
+    if (config.contactPhone && document.getElementById('footer-phone')) {
+      const phoneLink = document.getElementById('footer-phone');
+      phoneLink.href = `tel:${config.contactPhone}`;
+      phoneLink.textContent = config.contactPhone;
+    }
+    if (config.contactEmail && document.getElementById('footer-email')) {
+      const emailLink = document.getElementById('footer-email');
+      emailLink.href = `mailto:${config.contactEmail}`;
+      emailLink.textContent = config.contactEmail;
+    }
+    if (config.serviceArea && document.getElementById('footer-location')) {
+      document.getElementById('footer-location').textContent = `Based in ${config.serviceArea}`;
+    }
+    if (config.licenceType && document.getElementById('footer-licence')) {
+      document.getElementById('footer-licence').textContent = `Licence: ${config.licenceType}`;
     }
   }
 
-  function openLightbox(project) {
-    if (!lightbox || !project) return;
-    currentLightboxProject = project;
-    currentLightboxIndex = 0;
-    lightbox.hidden = false;
-    lightboxImg.src = project.images[0];
-    lightboxImg.alt = project.title;
-    lightboxTitle.textContent = project.title;
-    lightboxDesc.textContent = project.description;
-    lightboxMeta.textContent = project.duration ? "Duration: " + project.duration : "";
+  // Build benefits grid
+  function buildBenefitsGrid() {
+    const grid = document.getElementById('benefits-grid');
+    if (!grid) return;
 
-    if (lightboxThumbs) {
-      lightboxThumbs.innerHTML = "";
-      project.images.forEach(function (url, i) {
-        var thumb = document.createElement("img");
-        thumb.src = url;
-        thumb.alt = project.title + " " + (i + 1);
-        thumb.dataset.index = i;
-        if (i === 0) thumb.classList.add("active");
-        thumb.addEventListener("click", function () {
-          setLightboxImage(project, i);
-        });
-        lightboxThumbs.appendChild(thumb);
-      });
-    }
-
-    document.body.style.overflow = "hidden";
-  }
-
-  // Lightbox swipe on mobile
-  if (lightbox && lightboxImg) {
-    var touchStartX = 0;
-    var touchEndX = 0;
-    lightbox.addEventListener(
-      "touchstart",
-      function (e) {
-        touchStartX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+    const benefits = [
+      {
+        title: "Profit Share",
+        description: config.profitShareDescription || "Early team members share in the profit of every job. The more value you create, the more you earn.",
+        icon: "📈",
+        featured: true
       },
-      { passive: true }
-    );
-    lightbox.addEventListener(
-      "touchend",
-      function (e) {
-        touchEndX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
-        var diff = touchStartX - touchEndX;
-        if (!currentLightboxProject || Math.abs(diff) < 50) return;
-        if (diff > 0) {
-          var next = Math.min(currentLightboxIndex + 1, currentLightboxProject.images.length - 1);
-          if (next !== currentLightboxIndex) setLightboxImage(currentLightboxProject, next);
-        } else {
-          var prev = Math.max(currentLightboxIndex - 1, 0);
-          if (prev !== currentLightboxIndex) setLightboxImage(currentLightboxProject, prev);
-        }
+      {
+        title: "Paid Properly. Every Week.",
+        description: `${config.payRateQualified || "$55–$70/hr"} for qualified chippies. ${config.paymentFrequency || "Bank transfer every Friday"}. No exceptions.`,
+        icon: "💰"
       },
-      { passive: true }
-    );
-  }
-
-  function closeLightbox() {
-    if (lightbox) {
-      lightbox.hidden = true;
-      document.body.style.overflow = "";
-      currentLightboxProject = null;
-    }
-  }
-
-  if (lightboxClose) {
-    lightboxClose.addEventListener("click", closeLightbox);
-  }
-  if (lightbox) {
-    lightbox.addEventListener("click", function (e) {
-      if (e.target === lightbox) closeLightbox();
-    });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !lightbox.hidden) closeLightbox();
-    });
-  }
-
-  // ----- FAQ accordion -----
-  var faqList = document.getElementById("faq-list");
-  if (faqList && data.faq && data.faq.length) {
-    data.faq.forEach(function (item) {
-      var wrap = document.createElement("div");
-      wrap.className = "faq-item";
-
-      var btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "faq-question";
-      btn.textContent = item.q;
-      btn.setAttribute("aria-expanded", "false");
-
-      var answer = document.createElement("div");
-      answer.className = "faq-answer";
-      var p = document.createElement("p");
-      p.textContent = item.a;
-      answer.appendChild(p);
-
-      wrap.appendChild(btn);
-      wrap.appendChild(answer);
-      faqList.appendChild(wrap);
-
-      btn.addEventListener("click", function () {
-        var isOpen = wrap.classList.toggle("is-open");
-        btn.setAttribute("aria-expanded", isOpen);
-      });
-    });
-  }
-
-  // ----- What we offer tabs -----
-  var offerTabs = document.querySelectorAll(".offer-tab");
-  var panels = document.querySelectorAll(".offer-panel");
-  offerTabs.forEach(function (tab) {
-    tab.addEventListener("click", function () {
-      var tabId = tab.dataset.tab;
-      offerTabs.forEach(function (t) {
-        t.classList.toggle("active", t === tab);
-      });
-      panels.forEach(function (panel) {
-        panel.classList.toggle("active", panel.id === "panel-" + tabId);
-      });
-    });
-  });
-
-  // ----- Worker testimonials: show only if enabled and 2+ -----
-  var testimonialsSection = document.getElementById("testimonials");
-  var testimonialsGrid = document.getElementById("testimonials-grid");
-  if (
-    data.testimonialsEnabled &&
-    data.testimonials &&
-    data.testimonials.length >= 2 &&
-    testimonialsSection &&
-    testimonialsGrid
-  ) {
-    testimonialsSection.hidden = false;
-    testimonialsSection.removeAttribute("aria-hidden");
-    data.testimonials.forEach(function (t) {
-      var card = document.createElement("div");
-      card.className = "offer-card";
-      card.innerHTML =
-        "<p><strong>" +
-        (t.name || "") +
-        "</strong> — " +
-        (t.experience || "") +
-        "</p><p>" +
-        (t.quote || "") +
-        "</p>";
-      testimonialsGrid.appendChild(card);
-    });
-  }
-
-  // ----- Smooth scroll for anchor links -----
-  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-    var id = link.getAttribute("href");
-    if (id === "#") return;
-    link.addEventListener("click", function (e) {
-      var target = document.querySelector(id);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      {
+        title: "Tools & Gear Provided",
+        description: "Major power tools, consumables, and PPE on us. You bring your hand tools.",
+        icon: "🔧"
+      },
+      {
+        title: "You Build. We Handle the Rest.",
+        description: "No quoting, no chasing clients, no paperwork. Show up, do quality work, go home.",
+        icon: "✅"
+      },
+      {
+        title: "High-End Work Only",
+        description: "Quality residential projects — renovations, custom builds, fit-outs. No production-line rubbish.",
+        icon: "🏠"
+      },
+      {
+        title: "Your Voice Matters",
+        description: "Small founding team. Your input shapes how we grow. You're not a number.",
+        icon: "🎤"
       }
+    ];
+
+    grid.innerHTML = benefits.map((benefit, index) => `
+      <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition-delay: ${index * 100}ms">
+        <div class="benefit-icon">${benefit.icon}</div>
+        <h3>${benefit.title}</h3>
+        <p class="text-body-02">${benefit.description}</p>
+      </div>
+    `).join('');
+  }
+
+  // Scroll reveal animation
+  function initScrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
     });
-  });
+
+    reveals.forEach(reveal => {
+      observer.observe(reveal);
+    });
+  }
+
+  // Smooth scroll for anchor links
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize on DOM ready
+  function init() {
+    populateContent();
+    buildBenefitsGrid();
+    initScrollReveal();
+    initSmoothScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
