@@ -44,7 +44,9 @@ window.LANDING_PAGE_DATA = {
       duration: "1 week",
       description: "Internal wall removal and new LVL beam. Engineered specs, council sign-off. Clean install so the rest of the trade could follow.",
       images: [
-        "https://placehold.co/800x600/2d2d2d/555?text=Structural+1"
+        "https://placehold.co/800x600/2d2d2d/555?text=Structural+1",
+        "https://placehold.co/800x600/2d2d2d/555?text=Structural+2",
+        "https://placehold.co/800x600/2d2d2d/555?text=Structural+3"
       ]
     },
     {

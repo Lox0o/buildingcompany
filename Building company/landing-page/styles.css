@@ -97,6 +97,12 @@ a:hover {
   padding: var(--space-lg);
 }
 
+@media (min-width: 640px) {
+  .hero {
+    min-height: 100vh;
+  }
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -236,6 +242,7 @@ a:hover {
   box-shadow: var(--shadow);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
 }
 
 .portfolio-card:hover {
@@ -247,6 +254,31 @@ a:hover {
   width: 100%;
   aspect-ratio: 4/3;
   object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.portfolio-card:hover img {
+  transform: scale(1.03);
+}
+
+.portfolio-card-desc {
+  display: none;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: var(--space-sm);
+  font-size: 0.85rem;
+  color: #fff;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  line-height: 1.4;
+}
+
+@media (min-width: 1024px) {
+  .portfolio-card:hover .portfolio-card-desc {
+    display: block;
+  }
 }
 
 .portfolio-card-info {
@@ -540,6 +572,7 @@ a:hover {
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
 }
 
 .how-step {
@@ -565,6 +598,8 @@ a:hover {
   color: #fff;
   background: var(--color-accent);
   border-radius: 50%;
+  position: relative;
+  z-index: 1;
 }
 
 .how-step h3 {
@@ -598,8 +633,44 @@ a:hover {
 }
 
 @media (min-width: 1024px) {
+  .how-steps {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-md) 0;
+  }
+
+  .how-steps::before {
+    content: "";
+    position: absolute;
+    top: 1.25rem;
+    left: 2.5rem;
+    right: 2.5rem;
+    height: 2px;
+    background: var(--color-border);
+    z-index: 0;
+  }
+
   .how-step {
-    width: calc(20% - var(--space-md));
+    width: calc(20% - var(--space-sm));
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+  }
+
+  .how-step > div {
+    margin-top: var(--space-sm);
+  }
+
+  .how-step h3 {
+    font-size: 1rem;
+  }
+
+  .how-step p {
+    font-size: 0.9rem;
   }
 }
 
@@ -688,12 +759,16 @@ a:hover {
 }
 
 .faq-answer {
-  display: none;
-  padding: 0 0 var(--space-md);
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 var(--space-md) 0 0;
+  transition: max-height 0.25s ease-out;
 }
 
 .faq-item.is-open .faq-answer {
-  display: block;
+  max-height: 300px;
+  padding: 0 0 var(--space-md);
+  transition: max-height 0.3s ease-in;
 }
 
 .faq-answer p {

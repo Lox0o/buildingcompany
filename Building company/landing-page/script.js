@@ -31,7 +31,12 @@
       info.appendChild(title);
       info.appendChild(meta);
 
+      var desc = document.createElement("p");
+      desc.className = "portfolio-card-desc";
+      desc.textContent = project.description;
+
       card.appendChild(img);
+      card.appendChild(desc);
       card.appendChild(info);
       grid.appendChild(card);
 
@@ -73,8 +78,26 @@
   var lightboxThumbs = document.getElementById("lightbox-thumbs");
   var lightboxClose = document.querySelector(".lightbox-close");
 
+  var currentLightboxProject = null;
+  var currentLightboxIndex = 0;
+
+  function setLightboxImage(project, index) {
+    if (!project || !lightboxImg) return;
+    index = Math.max(0, Math.min(index, project.images.length - 1));
+    currentLightboxIndex = index;
+    lightboxImg.src = project.images[index];
+    if (lightboxThumbs) {
+      var thumbs = lightboxThumbs.querySelectorAll("img");
+      thumbs.forEach(function (t, i) {
+        t.classList.toggle("active", i === index);
+      });
+    }
+  }
+
   function openLightbox(project) {
     if (!lightbox || !project) return;
+    currentLightboxProject = project;
+    currentLightboxIndex = 0;
     lightbox.hidden = false;
     lightboxImg.src = project.images[0];
     lightboxImg.alt = project.title;
@@ -91,10 +114,7 @@
         thumb.dataset.index = i;
         if (i === 0) thumb.classList.add("active");
         thumb.addEventListener("click", function () {
-          lightboxImg.src = project.images[i];
-          lightboxThumbs.querySelectorAll("img").forEach(function (t) {
-            t.classList.toggle("active", t === thumb);
-          });
+          setLightboxImage(project, i);
         });
         lightboxThumbs.appendChild(thumb);
       });
@@ -103,10 +123,40 @@
     document.body.style.overflow = "hidden";
   }
 
+  // Lightbox swipe on mobile
+  if (lightbox && lightboxImg) {
+    var touchStartX = 0;
+    var touchEndX = 0;
+    lightbox.addEventListener(
+      "touchstart",
+      function (e) {
+        touchStartX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+      },
+      { passive: true }
+    );
+    lightbox.addEventListener(
+      "touchend",
+      function (e) {
+        touchEndX = e.changedTouches ? e.changedTouches[0].screenX : e.screenX;
+        var diff = touchStartX - touchEndX;
+        if (!currentLightboxProject || Math.abs(diff) < 50) return;
+        if (diff > 0) {
+          var next = Math.min(currentLightboxIndex + 1, currentLightboxProject.images.length - 1);
+          if (next !== currentLightboxIndex) setLightboxImage(currentLightboxProject, next);
+        } else {
+          var prev = Math.max(currentLightboxIndex - 1, 0);
+          if (prev !== currentLightboxIndex) setLightboxImage(currentLightboxProject, prev);
+        }
+      },
+      { passive: true }
+    );
+  }
+
   function closeLightbox() {
     if (lightbox) {
       lightbox.hidden = true;
       document.body.style.overflow = "";
+      currentLightboxProject = null;
     }
   }
 
