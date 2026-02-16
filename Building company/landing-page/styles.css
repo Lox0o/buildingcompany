@@ -284,19 +284,31 @@ a {
   margin-top: var(--space-md);
 }
 
-.hero-cta .btn-primary {
+/* Large primary CTA — hero, benefits, register section */
+.btn-primary--large {
   min-height: 64px;
   padding: 1.25rem 3rem;
   font-size: 1rem;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  font-weight: 600;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
 
 @media (min-width: 640px) {
-  .hero-cta .btn-primary {
+  .btn-primary--large {
     min-height: 72px;
-    padding: 1.5rem 3.5rem;
-    font-size: 1.0625rem;
+    padding: 1.5rem 4rem;
+    font-size: 1.125rem;
   }
+}
+
+.hero-cta .btn-primary--large {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+
+.register-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-lg);
 }
 
 /* Buttons */

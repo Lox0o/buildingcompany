@@ -29,10 +29,10 @@
 
     // Form links (open in new tab — no scroll)
     var formUrl = config.formUrl || "https://airtable.com/appqfjDttdu4JQjNK/pags0etDtyq65SH6y/form";
-    var heroCta = document.getElementById('hero-cta-link');
-    var benefitsCta = document.getElementById('benefits-cta-link');
-    if (heroCta) heroCta.href = formUrl;
-    if (benefitsCta) benefitsCta.href = formUrl;
+    [ 'hero-cta-link', 'benefits-cta-link', 'register-cta-link' ].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.href = formUrl;
+    });
   }
 
   // Build benefits grid
