@@ -8,6 +8,7 @@ Single-page recruitment site built from the PRD. Mobile-first, fast, ready to de
 - **styles.css** — Layout and styling (no build step).
 - **script.js** — Portfolio grid, filter, lightbox, FAQ accordion, offer tabs.
 - **data.js** — Editable content: portfolio projects, FAQ, testimonials (turn on when you have 2+).
+- **images/** — Image folders: `hero/`, `portfolio/`, `about/`, `testimonials/`. See `images/README.md` for details.
 - **sitemap.xml** / **robots.txt** — Update the domain to your live URL before or after deploy.
 
 ## 1. Add your Tally form
@@ -22,14 +23,20 @@ Single-page recruitment site built from the PRD. Mobile-first, fast, ready to de
 
 - **index.html**  
   - Hero: headline, subhead, location, urgency text.  
-  - About Ed: replace the placeholder image `src` with a real photo of Ed on site; edit bio, quote, and **licence number** in credentials.  
+  - About Ed: edit bio, quote, and **licence number** in credentials. The image path is already set to `images/about/ed-on-site.jpg` — just add your photo there.  
   - What we offer: add your real rate range and suburbs.  
   - Footer: company name, ABN, licence number, phone, email, service area, privacy line. Optionally add social links in the footer-social div.  
   - **SEO**: Replace `https://yoursite.com.au` in the canonical link, Open Graph and Twitter meta tags, and in the JSON-LD script at the bottom. Replace `og-image.jpg` with a real image URL (e.g. hero or logo).  
   - **sitemap.xml** and **robots.txt**: Replace `https://yoursite.com.au` with your live domain.
 
+- **images/**  
+  - **hero/**: Add `hero-bg.jpg` (1920x1080px or larger) for the hero background.  
+  - **about/**: Add `ed-on-site.jpg` (portrait or job-site photo).  
+  - **portfolio/**: Add your project photos and update URLs in `data.js` to point to `images/portfolio/`.  
+  - **testimonials/**: Add worker photos when you have testimonials.
+
 - **data.js**  
-  - **portfolio**: Replace placeholder image URLs with your real project photos. Add/remove projects; keep `type` (bathroom, kitchen, deck, structural, fitout) for the filter.  
+  - **portfolio**: Replace placeholder image URLs with paths to your photos in `images/portfolio/`. Add/remove projects; keep `type` (bathroom, kitchen, deck, structural, fitout) for the filter.  
   - **faq**: Replace the `[your rate range]` and `[Your suburbs/regions]` with your actual details.  
   - **testimonials**: When you have 2+ worker testimonials, set `testimonialsEnabled: true` and fill the `testimonials` array. The section will show automatically.
 
