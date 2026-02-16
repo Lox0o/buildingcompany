@@ -22,28 +22,9 @@
       document.getElementById('hero-urgency').textContent = config.urgencyText;
     }
     
-    // Footer
-    if (config.companyName && document.getElementById('footer-company')) {
-      document.getElementById('footer-company').textContent = config.companyName;
-    }
-    if (config.abn && document.getElementById('footer-abn')) {
-      document.getElementById('footer-abn').textContent = `ABN: ${config.abn}`;
-    }
-    if (config.contactPhone && document.getElementById('footer-phone')) {
-      const phoneLink = document.getElementById('footer-phone');
-      phoneLink.href = `tel:${config.contactPhone}`;
-      phoneLink.textContent = config.contactPhone;
-    }
-    if (config.contactEmail && document.getElementById('footer-email')) {
-      const emailLink = document.getElementById('footer-email');
-      emailLink.href = `mailto:${config.contactEmail}`;
-      emailLink.textContent = config.contactEmail;
-    }
+    // Footer (location only — driven by config)
     if (config.serviceArea && document.getElementById('footer-location')) {
       document.getElementById('footer-location').textContent = `Based in ${config.serviceArea}`;
-    }
-    if (config.licenceType && document.getElementById('footer-licence')) {
-      document.getElementById('footer-licence').textContent = `Licence: ${config.licenceType}`;
     }
   }
 
@@ -87,7 +68,7 @@
     ];
 
     grid.innerHTML = benefits.map((benefit, index) => `
-      <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition-delay: ${index * 100}ms">
+      <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition: opacity 1s ease-out ${index * 100}ms, transform 1s ease-out ${index * 100}ms;">
         <div class="benefit-icon">${benefit.icon}</div>
         <h3>${benefit.title}</h3>
         <p class="text-body-02">${benefit.description}</p>

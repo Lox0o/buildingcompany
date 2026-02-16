@@ -4,7 +4,7 @@
 window.SJ_BUILDERS_CONFIG = {
   companyName: "SJ Builders",
   tagline: "Built different. From the ground up.",
-  serviceArea: "Sydney", // Update to specific suburbs later
+  serviceArea: "Brisbane and Gold Coast",
   payRateQualified: "$55–$70/hr",
   payRateApprentice: "Award rate + above",
   paymentFrequency: "Weekly, every Friday",
