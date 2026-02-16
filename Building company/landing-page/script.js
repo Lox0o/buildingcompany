@@ -41,8 +41,8 @@
         featured: true
       },
       {
-        title: "Paid Properly. Every Week.",
-        description: `${config.payRateQualified || "$55–$70/hr"} for qualified chippies. ${config.paymentFrequency || "Bank transfer every Friday"}. No exceptions.`,
+        title: "Paid properly. On time.",
+        description: "You get paid when you're supposed to. No chasing, no exceptions.",
         iconId: "icon-dollar"
       },
       {
