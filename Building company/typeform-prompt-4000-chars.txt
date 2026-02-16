@@ -1,0 +1,32 @@
+Build a multi-step Typeform for tradie (carpenter) recruitment. Tone: direct, tradie-friendly, no corporate jargon. Each question variable must match the Airtable column name in brackets for integration.
+
+STRUCTURE: 3 steps.
+
+STEP 1 — Contact & location
+Intro: "Quick one — who are you and where are you based?"
+1. "What's your name?" — Short text, required. [full_name]
+2. "Best number to reach you?" — Phone/short text, required. [mobile]
+3. "Your email?" — Email, required. [email]
+4. "Which suburb?" — Short text, required. [suburb]
+
+STEP 2 — Experience & qualifications
+Intro: "Tell us about your experience."
+5. "Experience level?" — Single choice, required. Options: Apprentice (1st year), Apprentice (2nd year), Apprentice (3rd year), Apprentice (4th year), Qualified (1–5 years), Qualified (5–10 years), Qualified (10+ years). [experience_level]
+LOGIC: If Apprentice → go to 6b. If Qualified → go to 6a.
+6a (Qualified only). "Licence type or trade qualification?" — Short text, required. [trade_qualifications]
+6a2 (Qualified only). "Upload photo of licence/cert (optional)." — File upload, 1 file. [licence_cert_photo]
+6b (Apprentice only). "Currently enrolled at TAFE? Which year/block?" — Short text, optional. [tafe_enrolled]
+7. "When can you work?" — Multiple choice (checkboxes): Weekdays, Weekends, Flexible, Full-time. Required. [work_availability]
+8. "In a couple of sentences, what work have you done and what are you good at?" — Long text, required. [experience_description]
+
+STEP 3 — Work photos & extras
+Intro: "Last bit — show us your work."
+9. "Upload photos of your work (up to 10). Job sites, finished work, detail. JPEG, PNG or HEIC." — File upload, multiple, max 10, required. [work_photos]
+10. "How did you hear about us?" — Single choice: Facebook, Instagram, Google, Word of mouth, TAFE, Referred by someone, Other. Required. [how_hear]
+11. "ABN? (Optional)" — Short text, optional. [abn]
+12. "Preferred hourly or day rate? (Optional)" — Short text, optional. [preferred_rate]
+13. "Okay to get updates via SMS? We'll text within 48 hours." — Yes/No, default Yes. [sms_opt_in]
+
+SUBMIT: Button label "Submit my details" or "Register my interest".
+CONFIRMATION SCREEN: "Thanks, we've got your details. We'll be in touch within 48 hours (usually by text). Know someone who'd be a good fit? Send them the link."
+SETTINGS: Show progress (Step 2 of 3). Required fields as above. Logic: Apprentice sees 6b only; Qualified sees 6a + 6a2. Variables must be mappable to Airtable columns: full_name, mobile, email, suburb, experience_level, trade_qualifications, licence_cert_photo, work_availability, work_photos, experience_description, how_hear, abn, preferred_rate, sms_opt_in, tafe_enrolled.

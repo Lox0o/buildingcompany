@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Carpentry jobs — Join our team. Consistent work, fair rates, paid on time. Register your interest.">
+  <title>Join the crew — Carpenter recruitment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="hero-location">Based in [Your Region], Sydney</p>
+        <span class="hero-urgency">Now taking expressions of interest for Q2</span>
+        <h1 class="hero-headline">We're building a team of carpenters who give a damn.</h1>
+        <p class="hero-subhead">Consistent work. Fair rates. Paid on time, every time.</p>
+        <div class="hero-cta">
+          <a href="#register" class="btn btn-primary">Register your interest</a>
+          <a href="#portfolio" class="hero-link">See our work</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PORTFOLIO -->
+    <section class="section section-portfolio" id="portfolio">
+      <div class="container">
+        <h2 class="section-title">Our work</h2>
+        <p class="section-intro">Quality speaks. Have a look at what we build.</p>
+        <div class="portfolio-filter">
+          <button type="button" class="filter-btn active" data-filter="all">All</button>
+          <button type="button" class="filter-btn" data-filter="bathroom">Bathrooms</button>
+          <button type="button" class="filter-btn" data-filter="kitchen">Kitchens</button>
+          <button type="button" class="filter-btn" data-filter="deck">Decks</button>
+          <button type="button" class="filter-btn" data-filter="structural">Structural</button>
+          <button type="button" class="filter-btn" data-filter="fitout">Fit-outs</button>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid">
+          <!-- Filled by JS from data -->
+        </div>
+      </div>
+    </section>
+
+    <!-- LIGHTBOX -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Project gallery" hidden>
+      <button type="button" class="lightbox-close" aria-label="Close">×</button>
+      <div class="lightbox-content">
+        <div class="lightbox-main">
+          <img src="" alt="" id="lightbox-img">
+        </div>
+        <div class="lightbox-thumbs" id="lightbox-thumbs"></div>
+        <div class="lightbox-info">
+          <h3 id="lightbox-title"></h3>
+          <p id="lightbox-desc"></p>
+          <p id="lightbox-meta"></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT ED -->
+    <section class="section section-about-ed" id="about-ed">
+      <div class="container container--wide">
+        <h2 class="section-title">Who you'd be working with</h2>
+        <div class="about-ed-grid">
+          <div class="about-ed-photo">
+            <img src="https://placehold.co/600x800/1a1a1a/666?text=Ed+on+site" alt="Ed on a job site" width="600" height="800" loading="lazy">
+          </div>
+          <div class="about-ed-content">
+            <h3 class="about-ed-name">Ed</h3>
+            <div class="about-ed-credentials">
+              <span>Licenced carpenter</span>
+              <span>15+ years</span>
+            </div>
+            <div class="about-ed-bio">
+              <p>I've been in the trade for over 15 years. These days I specialise in residential renos — bathrooms, kitchens, decks, structural work, fit-outs. I care about doing it right: proper materials, clean finishes, no shortcuts.</p>
+              <p>What I'm looking for in people who join the team: blokes who take pride in a clean finish and don't cut corners when no one's watching. If that's you, I want to hear from you.</p>
+            </div>
+            <p class="about-ed-quote">"I want people who give a damn about the work. Show up, do it right, go home."</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT BUSINESS -->
+    <section class="section section-about-business">
+      <div class="container">
+        <h2 class="section-title">How we run things</h2>
+        <div class="about-business-content">
+          <p>Ed runs the tools and the jobs. A dedicated business partner handles quoting, scheduling, client management, and admin. So you do the work — we handle everything else. No quoting, no chasing clients, no paperwork. We're fully licenced, insured, and ABN registered. This isn't a cash-in-hand setup; it's a proper operation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT WE OFFER -->
+    <section class="section section-offer" id="offer">
+      <div class="container">
+        <h2 class="section-title">What we offer</h2>
+        <p class="section-intro">No corporate spin. Here's what actually matters.</p>
+
+        <div class="offer-tabs">
+          <button type="button" class="offer-tab active" data-tab="qualified">Qualified tradies</button>
+          <button type="button" class="offer-tab" data-tab="apprentices">Apprentices</button>
+        </div>
+
+        <div class="offer-panel active" id="panel-qualified">
+          <div class="offer-grid">
+            <article class="offer-card">
+              <h3>No more chasing payment.</h3>
+              <p>[Your rate range] per hour / day. Weekly bank transfer, every Friday. No exceptions, no "the cheque's in the mail."</p>
+            </article>
+            <article class="offer-card">
+              <h3>No more wondering where next week's work is.</h3>
+              <p>We handle the pipeline. You'll have work booked 2–3 weeks ahead. No feast-or-famine.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Work for someone who actually knows the trade.</h3>
+              <p>Ed's a licenced carpenter with 15+ years on the tools. You won't be fighting bad decisions or cutting corners. See the portfolio above — that's the standard.</p>
+            </article>
+            <article class="offer-card">
+              <h3>You're a person here, not a number.</h3>
+              <p>Small team. Ed knows everyone by name. Your input matters. You're not a replaceable body on a production line.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Variety, not the same thing every day.</h3>
+              <p>Bathrooms, kitchens, decks, structural, fit-outs. You'll build skills across different project types.</p>
+            </article>
+            <article class="offer-card">
+              <h3>You do the work. We handle the rest.</h3>
+              <p>No quoting, no chasing clients, no council, no paperwork. Show up, do quality work, go home.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Flexible to start — path to full-time.</h3>
+              <p>Weekend work available now. Casual and contract days. Moving to full-time roles as we grow.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Tools &amp; gear.</h3>
+              <p>Major power tools and consumables provided. You bring your hand tools. PPE on us.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Reasonable travel.</h3>
+              <p>We work in [list your suburbs/regions]. If you're in the area, the travel stacks up.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="offer-panel" id="panel-apprentices">
+          <div class="offer-grid">
+            <article class="offer-card">
+              <h3>Actually learn the trade, not just sweep up.</h3>
+              <p>You'll work alongside Ed on the tools from day one. Not sent off with a labourer. Real hands-on learning.</p>
+            </article>
+            <article class="offer-card">
+              <h3>TAFE support.</h3>
+              <p>We support block release and TAFE attendance. We don't schedule over it. [Add fee support if applicable.]</p>
+            </article>
+            <article class="offer-card">
+              <h3>A clear path.</h3>
+              <p>Apprentice → qualified → potentially leading your own jobs and crew as we grow.</p>
+            </article>
+            <article class="offer-card">
+              <h3>Fair pay.</h3>
+              <p>Apprentice award rates [or above-award — state clearly]. No under-the-table stuff.</p>
+            </article>
+          </div>
+        </div>
+
+        <p class="offer-cta">Sound like your kind of gig? <a href="#register">Register below.</a></p>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section section-how" id="how">
+      <div class="container">
+        <h2 class="section-title">How it works</h2>
+        <p class="section-intro">No surprises. Here's what happens after you register.</p>
+        <ol class="how-steps">
+          <li class="how-step">
+            <span class="how-num">1</span>
+            <div>
+              <h3>Register your interest</h3>
+              <p>Fill in the form below with your details and some photos of your work. Takes about 5 minutes.</p>
+            </div>
+          </li>
+          <li class="how-step">
+            <span class="how-num">2</span>
+            <div>
+              <h3>We review your submission</h3>
+              <p>We look at your experience, qualifications, and the quality of your work. We'll get back to you within 48 hours.</p>
+            </div>
+          </li>
+          <li class="how-step">
+            <span class="how-num">3</span>
+            <div>
+              <h3>Quick phone chat</h3>
+              <p>If it looks like a good fit, we'll have a 10–15 minute call to talk about what you're looking for and what we've got coming up.</p>
+            </div>
+          </li>
+          <li class="how-step">
+            <span class="how-num">4</span>
+            <div>
+              <h3>Paid trial day</h3>
+              <p>Come out on a job, work alongside the team, see if it's a fit for both sides. You get paid for the day regardless.</p>
+            </div>
+          </li>
+          <li class="how-step">
+            <span class="how-num">5</span>
+            <div>
+              <h3>Ongoing work</h3>
+              <p>If it clicks, we start booking you in for jobs. Simple as that.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- WORKER TESTIMONIALS (hidden until you have 2+ testimonials) -->
+    <section class="section section-testimonials" id="testimonials" hidden aria-hidden="true">
+      <div class="container">
+        <h2 class="section-title">What it's like on the tools</h2>
+        <div class="testimonials-grid" id="testimonials-grid"></div>
+      </div>
+    </section>
+
+    <!-- REGISTRATION FORM (Tally embed) -->
+    <section class="section section-register" id="register">
+      <div class="container">
+        <h2 class="section-title">Register your interest</h2>
+        <p class="section-intro">Takes about 5 minutes. We'll be in touch within 48 hours.</p>
+        <div class="form-embed" id="form-embed">
+          <!-- Replace the iframe src below with your Tally form embed URL.
+               In Tally: Share → Embed → copy the iframe code, then paste the src here. -->
+          <iframe
+            data-tally-embed
+            src="https://tally.so/embed/YOUR_FORM_ID"
+            width="100%"
+            height="600"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="Register your interest"
+          ></iframe>
+          <p class="form-embed-note">If you don't see the form, <a href="https://tally.so/embed/YOUR_FORM_ID" target="_blank" rel="noopener">open it here</a> and replace YOUR_FORM_ID in this page with your real Tally form ID.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-faq" id="faq">
+      <div class="container container--narrow">
+        <h2 class="section-title">Questions we get</h2>
+        <div class="faq-list" id="faq-list">
+          <!-- Filled by JS from data -->
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-main">
+            <p class="footer-company">[Company name]</p>
+            <p class="footer-abn">ABN: [Your ABN]</p>
+            <p class="footer-licence">Builder's licence: [Licence number]</p>
+          </div>
+          <div class="footer-contact">
+            <p><a href="tel:+61000000000">[Your phone]</a></p>
+            <p><a href="mailto:hello@example.com">[Your email]</a></p>
+          </div>
+          <div class="footer-area">
+            <p><strong>Service area</strong></p>
+            <p>[Suburb 1], [Suburb 2], [Suburb 3] and surrounds</p>
+          </div>
+        </div>
+        <p class="footer-privacy">We use your details only for recruitment. We don't share them with anyone else.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
