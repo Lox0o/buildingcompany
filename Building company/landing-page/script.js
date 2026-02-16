@@ -29,7 +29,7 @@
 
     // Form links (open in new tab — no scroll)
     var formUrl = config.formUrl || "https://airtable.com/appqfjDttdu4JQjNK/pags0etDtyq65SH6y/form";
-    [ 'hero-cta-link', 'benefits-cta-link', 'register-cta-link' ].forEach(function (id) {
+    [ 'hero-cta-link', 'benefits-cta-link' ].forEach(function (id) {
       var el = document.getElementById(id);
       if (el) el.href = formUrl;
     });
