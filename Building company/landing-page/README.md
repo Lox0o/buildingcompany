@@ -38,10 +38,15 @@ In `index.html`, replace:
 
 ### 4. Form Setup
 
-The page uses an Airtable form embed. To update:
-1. Get your Airtable form embed URL
-2. Replace the `src` in the `<iframe>` in the Registration section
-3. Or build a custom multi-step form (see spec for requirements)
+The page uses an Airtable form. **Both "Register Your Interest" buttons open the form in a new tab** (no scroll on the main page).
+
+- **Form URL**: Set `formUrl` in `config.js` — this drives both hero and benefits CTAs.
+- **Embed (optional)**: The Registration section also embeds the form in an iframe. Update the iframe `src` in `index.html` if you use a different base.
+
+**If the form doesn’t work:**
+1. In Airtable, open the form and use **Share** → set to **“Anyone with the link”** (or “Anyone can submit”).
+2. Use the **form** link (e.g. `https://airtable.com/.../form`), not the base or embed URL, for `formUrl` in `config.js`.
+3. For the in-page embed, use Airtable’s **Embed** URL (sometimes different from the /form link) in the iframe `src`.
 
 ## Design System
 

@@ -16,5 +16,6 @@ window.SJ_BUILDERS_CONFIG = {
   profitShareDescription: "Early team members share in the profit of every job. Not a vague promise — a real percentage of project profits, paid quarterly. The more value you create, the more you earn.",
   heroHeadline: "Take ownership of what you build.",
   heroSubheadline: "SJ Builders is a new high-end residential builder. We're looking for quality carpenters who want profit share, proper rates, and a stake in something from day one.",
-  urgencyText: "Now recruiting — limited spots for founding team members"
+  urgencyText: "Now recruiting — limited spots for founding team members",
+  formUrl: "https://airtable.com/appqfjDttdu4JQjNK/pags0etDtyq65SH6y/form"
 };

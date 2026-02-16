@@ -26,6 +26,13 @@
     if (config.serviceArea && document.getElementById('footer-location')) {
       document.getElementById('footer-location').textContent = `Based in ${config.serviceArea}`;
     }
+
+    // Form links (open in new tab — no scroll)
+    var formUrl = config.formUrl || "https://airtable.com/appqfjDttdu4JQjNK/pags0etDtyq65SH6y/form";
+    var heroCta = document.getElementById('hero-cta-link');
+    var benefitsCta = document.getElementById('benefits-cta-link');
+    if (heroCta) heroCta.href = formUrl;
+    if (benefitsCta) benefitsCta.href = formUrl;
   }
 
   // Build benefits grid
@@ -67,13 +74,25 @@
       }
     ];
 
-    grid.innerHTML = benefits.map((benefit, index) => `
-      <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition: opacity 1s ease-out ${index * 100}ms, transform 1s ease-out ${index * 100}ms;">
+    const featured = benefits.find(b => b.featured);
+    const rest = benefits.filter(b => !b.featured);
+    const row2 = rest.slice(0, 3);
+    const row3 = rest.slice(3, 5);
+
+    function cardHtml(benefit, index, delay) {
+      return `
+      <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition: opacity 1s ease-out ${delay}ms, transform 1s ease-out ${delay}ms;">
         <div class="benefit-icon"><img src="images/icons/${benefit.iconId}.svg" alt="" width="48" height="48" class="benefit-icon-img"></div>
         <h3>${benefit.title}</h3>
         <p class="text-body-02">${benefit.description}</p>
-      </div>
-    `).join('');
+      </div>`;
+    }
+
+    grid.innerHTML = `
+      <div class="benefits-row benefits-row-1">${featured ? cardHtml(featured, 0, 0) : ''}</div>
+      <div class="benefits-row benefits-row-2">${row2.map((b, i) => cardHtml(b, i, 100 + i * 100)).join('')}</div>
+      <div class="benefits-row benefits-row-3">${row3.map((b, i) => cardHtml(b, i, 400 + i * 100)).join('')}</div>
+    `;
   }
 
   // Scroll reveal animation
