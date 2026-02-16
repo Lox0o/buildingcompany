@@ -123,6 +123,18 @@ a {
   padding: var(--section-padding) 0;
 }
 
+/* Credibility one-liner */
+.section-credibility {
+  background: var(--primary-white);
+}
+
+.credibility-line {
+  margin: 0 auto;
+  max-width: 42rem;
+  text-align: center;
+  color: var(--fg-subtle);
+}
+
 /* Typography */
 .text-display-01 {
   font-family: var(--font-display);
@@ -269,6 +281,13 @@ a {
 .hero-location {
   margin: 0;
   color: var(--fg-reversed-subtle);
+}
+
+.hero-availability {
+  margin: 0.25rem 0 0;
+  font-size: var(--type-label-02);
+  color: var(--fg-reversed-subtle);
+  opacity: 0.9;
 }
 
 .hero-urgency {

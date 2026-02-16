@@ -49,7 +49,7 @@
       },
       {
         title: "Paid properly. On time.",
-        description: "You get paid when you're supposed to. No chasing, no exceptions.",
+        description: "Rates discussed directly — we don't lowball. Paid weekly, every Friday. No chasing, no exceptions.",
         iconId: "icon-dollar"
       },
       {
@@ -64,13 +64,13 @@
       },
       {
         title: "High-End Work Only",
-        description: "Quality residential projects — renovations, custom builds, fit-outs. No production-line rubbish.",
+        description: "Bespoke renovations and new builds. Quality residential work, not production-line rubbish.",
         iconId: "icon-home"
       },
       {
-        title: "Your Voice Matters",
-        description: "Small founding team. Your input shapes how we grow. You're not a number.",
-        iconId: "icon-voice"
+        title: "Consistent Work",
+        description: "A dedicated business side keeps the pipeline full. You always know what's coming next — no feast-or-famine.",
+        iconId: "icon-calendar"
       }
     ];
 
