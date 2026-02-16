@@ -406,6 +406,13 @@ a {
   color: var(--accent);
 }
 
+.benefit-icon-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
 .benefit-card h3 {
   margin: 0 0 var(--space-sm);
   text-align: center;

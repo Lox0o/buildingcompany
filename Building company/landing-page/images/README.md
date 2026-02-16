@@ -2,30 +2,44 @@
 
 Organize your images here. Each folder has its own README with specific instructions.
 
+---
+
+## Where to add background pictures
+
+**Hero (main background):**
+- **Folder:** `images/hero/`
+- **Filename:** `hero-bg.jpg` (or `hero-bg.png` / `hero-bg.webp`)
+- **What it does:** Full-screen background behind the headline and CTA at the top of the page.
+- **In code:** Set in `styles.css` — search for `.hero-bg` and the `background-image: url("images/hero/hero-bg.jpg")` line. Change the path if you use a different filename.
+
+**Social / link preview image:**
+- **Folder:** `images/og/`
+- **Filename:** `og-image.jpg`
+- **What it does:** Image shown when the page is shared (e.g. SMS, WhatsApp, social).
+- **In code:** Update the `og:image` and `twitter:image` meta tags in `index.html` if your URL or filename is different.
+
+**No other background images** are used on the current page. Section backgrounds are solid colours (white and black).
+
+---
+
 ## Folder Structure
 
 ```
 images/
-├── hero/              # Hero background image
-├── portfolio/         # Project photos
-│   ├── project-1/     # Bathroom renovation — Randwick
-│   ├── project-2/     # Kitchen and living — Maroubra
-│   ├── project-3/     # Timber deck — Coogee
-│   ├── project-4/     # Structural framing — Bondi
-│   ├── project-5/     # Office fit-out — Alexandria
-│   └── project-6/     # Ensuite — Bronte
-├── about/             # Photo of Ed on site
+├── hero/              # Hero background image (hero-bg.jpg)
+├── icons/             # Monochromatic SVG icons for benefit cards (already included)
+├── portfolio/         # Project photos (if you add a portfolio section later)
+├── about/             # Photo of Ed on site (if used)
 ├── testimonials/      # Worker photos (when you have testimonials)
-└── og/                # Social sharing image (Open Graph)
+└── og/                # Social sharing image (og-image.jpg)
 ```
 
 ## Quick Reference
 
-- **hero/** - Background image for the top section (`hero-bg.jpg`)
-- **portfolio/** - 3-6 photos per project in numbered folders
-- **about/** - Ed's photo (`ed-on-site.jpg`)
-- **testimonials/** - Worker photos (name them by first name)
-- **og/** - Social sharing image (`og-image.jpg`)
+- **hero/** — **Main background:** add `hero-bg.jpg` here for the top-of-page hero.
+- **og/** — Add `og-image.jpg` for link previews when sharing.
+- **icons/** — Benefit card icons (SVGs already in place; replace with your own if needed).
+- **portfolio/**, **about/**, **testimonials/** — For future use if you add those sections.
 
 ## Image Requirements Summary
 

@@ -71,12 +71,12 @@ The page uses an Airtable form embed. To update:
 
 ## Features
 
-- ✅ Scroll-triggered fade-up animations
-- ✅ Smooth scroll navigation
-- ✅ Responsive design (mobile-first)
-- ✅ Config-driven content
-- ✅ Premium aesthetic (Gurner-inspired)
-- ✅ Fast loading (no heavy dependencies)
+- Scroll-triggered fade-up animations
+- Smooth scroll navigation
+- Responsive design (mobile-first)
+- Config-driven content
+- Premium aesthetic (Gurner-inspired)
+- Fast loading (no heavy dependencies)
 
 ## Deploy
 

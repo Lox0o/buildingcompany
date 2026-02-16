@@ -37,39 +37,39 @@
       {
         title: "Profit Share",
         description: config.profitShareDescription || "Early team members share in the profit of every job. The more value you create, the more you earn.",
-        icon: "📈",
+        iconId: "icon-chart",
         featured: true
       },
       {
         title: "Paid Properly. Every Week.",
         description: `${config.payRateQualified || "$55–$70/hr"} for qualified chippies. ${config.paymentFrequency || "Bank transfer every Friday"}. No exceptions.`,
-        icon: "💰"
+        iconId: "icon-dollar"
       },
       {
         title: "Tools & Gear Provided",
         description: "Major power tools, consumables, and PPE on us. You bring your hand tools.",
-        icon: "🔧"
+        iconId: "icon-tool"
       },
       {
         title: "You Build. We Handle the Rest.",
         description: "No quoting, no chasing clients, no paperwork. Show up, do quality work, go home.",
-        icon: "✅"
+        iconId: "icon-check"
       },
       {
         title: "High-End Work Only",
         description: "Quality residential projects — renovations, custom builds, fit-outs. No production-line rubbish.",
-        icon: "🏠"
+        iconId: "icon-home"
       },
       {
         title: "Your Voice Matters",
         description: "Small founding team. Your input shapes how we grow. You're not a number.",
-        icon: "🎤"
+        iconId: "icon-voice"
       }
     ];
 
     grid.innerHTML = benefits.map((benefit, index) => `
       <div class="benefit-card ${benefit.featured ? 'benefit-card--featured' : ''} reveal" style="transition: opacity 1s ease-out ${index * 100}ms, transform 1s ease-out ${index * 100}ms;">
-        <div class="benefit-icon">${benefit.icon}</div>
+        <div class="benefit-icon"><img src="images/icons/${benefit.iconId}.svg" alt="" width="48" height="48" class="benefit-icon-img"></div>
         <h3>${benefit.title}</h3>
         <p class="text-body-02">${benefit.description}</p>
       </div>
